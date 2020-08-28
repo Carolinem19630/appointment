@@ -1,0 +1,28 @@
+{% extends "appointments/layout.html" %}
+
+{% block body %}
+    <h1>Appointment {{ appointment.id }}</h1>
+    <ul>
+        <li>Start Time: {{ appointment.start }}</li>
+        <li>End Time: {{ appointment.end }}</li>
+        <li>Location: {{ appointment.location }} </li>
+    </ul>
+    <h2>Attendees:</h2>
+    <ul>
+        {% for attendee in attendees %}
+            <li>{{ attendee }}</li>
+        {% empty %}
+            <li>No Attendees.</li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'attend' appointment.id %}" method="post">
+        {% csrf_token %}
+        <select name="attendee" id="">
+            {% for attendee in non_attendees %}
+                <option value="{{ attendee.id }}">{{ attendee }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit">
+    </form>
+    <a href="{% url 'index' %}">All Appointments</a>
+{% endblock %}

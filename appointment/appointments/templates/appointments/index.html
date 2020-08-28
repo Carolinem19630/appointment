@@ -1,0 +1,10 @@
+{% extends "appointments/layout.html" %}
+
+{% block body %}
+    <h1>Appointments:</h1>
+    <ul>
+        {% for appointment in appointments %}
+            <li><a href="{% url 'appointments' appointment.id %}" >Appointment {{ appointment.id }}: {{ appointment.start }} to {{ appointment.end }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
