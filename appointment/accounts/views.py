@@ -29,6 +29,6 @@ def login_view(request):
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
-        return render(request, "users/login.html", {
+        return render(request, "accounts/login.html", {
                 "message": "Logged Out"
             })

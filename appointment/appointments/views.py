@@ -20,20 +20,20 @@ def appointments(request, appointments_id):
 
 def attend(request, appointments_id):
 
-    # For a post request, add a new flight
+    # For a post request, add a new appointment
     if request.method == "POST":
 
-        # Accessing the flight
+        # Accessing the appointment
         appointment = Appointment.objects.get(pk=appointments_id)
 
-        # Finding the passenger id from the submitted form data
+        # Finding the attendee id from the submitted form data
         attendee_id = int(request.POST["attendee"])
 
-        # Finding the passenger based on the id
+        # Finding the attendee based on the id
         attendee = Attendee.objects.get(pk=attendee_id)
 
-        # Add passenger to the flight
+        # Add attendee to the appointment
         attendee.appointments.add(appointment)
 
-        # Redirect user to flight page
+        # Redirect user to appointment page
         return HttpResponseRedirect(reverse("appointments", args=(appointments.id,)))
